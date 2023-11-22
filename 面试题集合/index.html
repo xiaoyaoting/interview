@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 私有属性
+      class Person {
+        constructor(age) {
+          // 1. 开发提前约定好哪一些是私有的。比如 _ 开头的
+          // 不对它进行直接的访问和修改操作
+          this._age = age;
+          // 2. 创建闭包
+          let value = 123;
+          this.getValue = () => {
+            return value;
+          };
+          this.setValue = (newVal) => {
+            value = newVal;
+          };
+        }
+
+        getAge() {
+          return this._age;
+        }
+
+        setAge(newAge) {
+          this._age = newAge;
+        }
+      }
+      // 约定不使用 p._age 的方式访问和修改成员
+      let p = new Person(21);
+
+      // 4. Symbol
+      const value = Symbol(["私有变量"]);
+      value.description = 123
+      console.log(value)
+    </script>
+  </body>
+</html>
